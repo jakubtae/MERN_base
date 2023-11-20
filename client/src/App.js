@@ -1,19 +1,21 @@
 import React from 'react'
-
+import { Route, Routes } from "react-router-dom";
+import Header from './Components/header';
+import Home from './Pages/home';
+import Login from './Pages/login';
+import Register from './Pages/register';
+import Fileupload from './Pages/fileupload';
 function App() {
-  const [data, setData] = React.useState(null);
-
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
-
   return (
     <div className="App">
-      <header className="App-header">
-        <p>{!data ? "Loading..." : data}</p>
-      </header>
+      <Header/>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/register' element={<Register/>}/>
+        <Route path='/file-upload' element={<Fileupload/>}/>
+
+      </Routes>
     </div>
   );
 }
